@@ -31,7 +31,7 @@ import MyBreadcrumb from '~/components/Breadcrumb'
 
 export default {
 	name: "vehicles_detail",
-	layout: "detail",
+	layout: "main",
   async asyncData({ store, params, error }) {
 		let slug = params.slug
 		let item

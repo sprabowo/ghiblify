@@ -42,7 +42,7 @@ export default {
     }
     return result
   },
-  layout: 'detail',
+  layout: 'main',
   data() {
     return {
       locations: null

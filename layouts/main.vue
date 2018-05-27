@@ -69,14 +69,13 @@
 			<v-btn nuxt to="/bookmark" flat>Bookmark</v-btn>
 		</v-toolbar-items>
 		<v-spacer class="hidden-sm-and-down"></v-spacer>
-		<v-text-field
+		<!-- <v-text-field
 			flat
 			solo-inverted
 			placeholder="Search here"
 			append-icon="search"
 			class="hidden-sm-and-down"
-		></v-text-field>
-		<v-spacer></v-spacer>
+		></v-text-field> -->
 	</v-toolbar>
 		<!-- <my-header /> -->
 		<v-content>
