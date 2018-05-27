@@ -1,0 +1,64 @@
+@media only screen and (min-width: 960px) {
+	#container__content {
+		width: 1016px;
+		margin: 0 auto;
+	}
+}
+
+a.logo__header {
+	color: #404040;
+	font-weight: bold;
+	text-decoration: none;
+	margin-left: 0px;
+}
+
+.bm__kanan {
+	display: inline-block;
+	text-align: right;
+}
+
+.desckripsi__bm {
+	max-width: 100%;
+}
+
+a.breadcrumb {
+	color: rgba(0, 0, 0, .87);
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.image__people__thumbnail {
+	height: 200px;
+    display: block;
+    margin: auto;
+    overflow: hidden;
+	position: relative;
+	vertical-align: middle;
+}
+
+.custom__primary__title {
+	padding-top: 12px !important;
+}
+.headline {
+    font-size: 16px !important;
+    font-weight: 400;
+    height: 18px;
+    line-height: 18px !important;
+    overflow: hidden;
+    letter-spacing: normal !important;
+}
+
+.people__content {
+	width: 253px;
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.warna__title {
+	color: #6f6f6f;
+	font-weight: bold;
+}
+
+.warna__description {
+	color: #7d7d7d;
+}
