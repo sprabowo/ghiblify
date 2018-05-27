@@ -12,6 +12,10 @@ a.logo__header {
 	margin-left: 0px;
 }
 
+.toolbar__title {
+	margin-right: 8px;
+}
+
 .bm__kanan {
 	display: inline-block;
 	text-align: right;
@@ -22,6 +26,7 @@ a.logo__header {
 }
 
 a {
+	color: rgba(0, 0, 0, .87);
 	text-decoration: none;
 }
 
@@ -33,6 +38,15 @@ a.breadcrumb {
 
 .image__people__thumbnail {
 	height: 200px;
+    display: block;
+    margin: auto;
+    overflow: hidden;
+	position: relative;
+	vertical-align: middle;
+}
+
+.image__people__thumbnail__2 {
+	height: 150px;
     display: block;
     margin: auto;
     overflow: hidden;

@@ -9,8 +9,17 @@
         </v-layout>
         <v-layout row>
           <v-spacer class="hidden-sm-and-down"></v-spacer>
-          <v-spacer class="hidden-sm-and-down"></v-spacer>
-          <v-flex md2 class="py-3">
+          <v-flex class="hidden-sm-and-down py-3 xs4 mr-3 text-xs-right">
+            <v-btn-toggle v-model="toggle_exclusive">
+              <v-btn flat value="grid">
+                <v-icon>grid_on</v-icon>
+              </v-btn>
+              <v-btn flat value="list">
+                <v-icon>view_list</v-icon>
+              </v-btn>
+            </v-btn-toggle>
+          </v-flex>
+          <v-flex class="hidden-md-and-up py-3 xs4 text-xs-left">
             <v-btn-toggle v-model="toggle_exclusive">
               <v-btn flat value="grid">
                 <v-icon>grid_on</v-icon>
@@ -21,6 +30,8 @@
             </v-btn-toggle>
           </v-flex>
           <v-select
+            min-width="100"
+            class="mr-3"
             :items="itemsfilter"
             v-on:input="onChangeFilter"
             v-model="filterby"
@@ -41,7 +52,7 @@
                   :src="item.image"
                   height="250px"
                 ></v-card-media> -->
-                <img class="image__people__thumbnail" :src="item.image" width="100%" />
+                <img class="image__people__thumbnail__2" :src="item.image" width="100%" />
                 <v-card-title class="custom__primary__title" primary-title>
                   <div>
                     <div class="headline mb-0">{{ item.name }}</div>
@@ -53,16 +64,17 @@
             <v-card nuxt v-else :to="'people/' + item.id" color="white" class="black--text">
               <v-container fluid grid-list-lg>
                 <v-layout row>
-                  <v-flex xs4>
+                  <v-flex xs6>
                     <!-- <v-card-media
                       :src="item.image"
                       height="125px"
                     ></v-card-media> -->
-                    <img class="image__people__thumbnail" :src="item.image" width="100%" />
+                    <img class="image__people__thumbnail__2" :src="item.image" width="100%" />
                   </v-flex>
-                  <v-flex xs8>
+                  <v-flex xs6>
                     <div>
                       <div class="headline warna__title">{{ item.name }}</div>
+                      <div class="warna__description">Age: {{ item.age }}</div>
                       <div class="warna__description">Gender: {{ item.gender }}</div>
                     </div>
                   </v-flex>
@@ -173,12 +185,13 @@ export default {
     return {
       people: null,
       sortedby: null,
+      filterby: null,
       items: [
         { text: 'A-Z', value: 'A-Z' },
         { text: 'Z-A', value: 'Z-A' }
       ],
       itemsfilter: [
-        { text: 'Reset', value: null },
+        { text: 'Reset' },
         { text: 'Male', value: 'Male' },
         { text: 'Female', value: 'Female' }
       ],

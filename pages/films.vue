@@ -29,32 +29,38 @@
         </v-layout>
         <v-layout row wrap>
           <v-flex px-2 py-2 :class="{ 'xs6': xs6, 'xs12': xs12, 'md12': md12, 'md4': md4 }" :key="i" v-for="(item, i) in films">
-            <v-card nuxt v-if="toggle_exclusive === 'grid'" :to="'films/' + item.id" color="white" class="black--text">
+            <v-card v-if="toggle_exclusive === 'grid'" color="white" class="black--text">
               <v-flex xs12 md12>
                 <!-- <v-card-media
                   :src="item.image"
                   height="250px"
                 ></v-card-media> -->
-                <img :src="item.image" width="100%" />
+                <nuxt-link :to="'films/' + item.id">
+                  <img :src="item.image" width="100%" />
+                </nuxt-link>
                 <v-card-title class="custom__primary__title" primary-title>
-                  <v-flex xs11>
-                    <div class="headline mb-0">{{ item.title }}</div>
-                    <div>
-                      ({{ item.release_date }})
-                    </div>
+                  <v-flex xs10>
+                    <nuxt-link :to="'films/' + item.id">
+                      <div class="breadcrumb headline mb-0">{{ item.title }}</div>
+                      <div>
+                        ({{ item.release_date }})
+                      </div>
+                    </nuxt-link>
                   </v-flex>
-                  <v-flex m-0 xs1>
-                    <v-icon @click="removeBookmark(item)" v-if="item.bookmarked">bookmark</v-icon>
-                    <v-icon @click="addBookmark(item)" v-else>bookmark_border</v-icon>
+                  <v-flex px-1 xs2>
+                    <v-icon medium @click="removeBookmark(item)" v-if="item.bookmarked">bookmark</v-icon>
+                    <v-icon medium @click="addBookmark(item)" v-else>bookmark_border</v-icon>
                   </v-flex>
                 </v-card-title>
               </v-flex>
             </v-card>
-            <v-card nuxt v-else :to="'films/' + item.id" color="white" class="black--text">
+            <v-card v-else color="white" class="black--text">
               <v-container fluid grid-list-lg>
                 <v-layout row>
                   <v-flex xs4>
-                    <img :src="item.image" width="100%" />
+                    <nuxt-link :to="'films/' + item.id">
+                      <img :src="item.image" width="100%" />
+                    </nuxt-link>
                     <!-- <v-card-media
                       :src="item.image"
                       height="125px"
@@ -63,12 +69,16 @@
                   <v-flex xs8>
                     <v-layout row>
                       <v-flex xs10>
-                        <div class="headline warna__title">{{ item.title }}</div>
-                        <div class="warna__description">{{ item.release_date}}</div>
+                        <nuxt-link :to="'films/' + item.id">
+                          <div class="headline warna__title">{{ item.title }}</div>
+                          <div class="warna__description">{{ item.release_date }}</div>
+                          <div class="hidden-md-and-up warna__description">{{ descrify(item.description, 80) + '...' }}</div>
+                          <div class="hidden-sm-and-down mt-3 warna__description">{{ item.description }}</div>
+                        </nuxt-link>
                       </v-flex>
-                      <v-flex xs2>
-                        <v-icon @click="removeBookmark(item)" v-if="item.bookmarked">bookmark</v-icon>
-                        <v-icon @click="addBookmark(item)" v-else>bookmark_border</v-icon>
+                      <v-flex px-1 xs2>
+                        <v-icon medium @click="removeBookmark(item)" v-if="item.bookmarked">bookmark</v-icon>
+                        <v-icon medium @click="addBookmark(item)" v-else>bookmark_border</v-icon>
                       </v-flex>
                     </v-layout>
                   </v-flex>

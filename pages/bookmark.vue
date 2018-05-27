@@ -12,15 +12,15 @@
             <v-card nuxt :to="'films/' + item.id" color="white" class="black--text">
               <v-container fluid grid-list-lg>
                 <v-layout row>
-                  <v-flex md10>
+                  <v-flex xs10 md10>
                     <div>
                       <div class="headline warna__title">{{ item.title}}</div>
                       <div class="warna__description">{{ item.release_date }}</div>
                     </div>
                   </v-flex>
-                  <v-flex text-xs-center md2>
-                    <v-icon @click="removeBookmark(item)" v-if="item.bookmarked">bookmark</v-icon>
-                    <v-icon @click="addBookmark(item)" v-else>bookmark_border</v-icon>
+                  <v-flex text-xs-center xs2 md2>
+                    <v-icon medium @click="removeBookmark(item)" v-if="item.bookmarked">bookmark</v-icon>
+                    <v-icon medium @click="addBookmark(item)" v-else>bookmark_border</v-icon>
                   </v-flex>
                 </v-layout>
               </v-container>
@@ -29,7 +29,7 @@
           <v-flex v-if="films.length === 0">
             <v-container fluid grid-list-lg>
               <v-layout row>
-                <v-flex text-xs-center md12>
+                <v-flex text-xs-center xs12>
                   Ups there's no bookmark list :(
                 </v-flex>
               </v-layout>

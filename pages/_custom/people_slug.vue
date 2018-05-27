@@ -5,7 +5,7 @@
       <v-flex md8 offset-md2 xs12>
         <v-container fluid grid-list-lg>
         	<v-layout row>
-						<v-flex xs12  md4 offset-md4>
+						<v-flex xs12 md4 offset-md4>
 							<img class="image__people__thumbnail"  :src="item.image" width="100%" />
 						</v-flex>
 					</v-layout>

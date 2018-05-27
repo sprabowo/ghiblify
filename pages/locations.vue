@@ -8,9 +8,11 @@
           <v-spacer></v-spacer>
         </v-layout>
         <v-layout row>
-          <v-spacer class="hidden-sm-and-down"></v-spacer>
-          <v-spacer class="hidden-sm-and-down"></v-spacer>
+          <v-spacer></v-spacer>
+          <v-spacer></v-spacer>
+          <v-spacer></v-spacer>
           <v-select
+            min-width="127"
             :items="items"
             v-on:input="onChange"
             v-model="sortedby"
