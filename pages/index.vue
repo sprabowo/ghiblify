@@ -2,7 +2,7 @@
   <div>
     <v-layout row>
       <v-flex md8 offset-md2 xs12>
-        <v-layout mt-4 row>
+        <v-layout row>
           <h2 class="py-1 pl-2">Films</h2>
           <v-spacer></v-spacer>
           <v-btn small nuxt to="films" outline>

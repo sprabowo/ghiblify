@@ -56,11 +56,11 @@ export default {
   },
   head() {
 		return {
-			title: 'films of Studio Ghibli - Ghiblify',
+			title: 'Bookmark - Ghiblify',
 			meta: [
 				// { charset: 'utf-8' },
 				// { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
-				{ hid: 'description', name: 'description', content: 'films of Studio Ghibli - Ghiblify' }
+				{ hid: 'description', name: 'description', content: 'Bookmark - Ghiblify' }
 			]
 		}
 	},

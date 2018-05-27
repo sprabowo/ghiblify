@@ -21,6 +21,10 @@ a.logo__header {
 	max-width: 100%;
 }
 
+a {
+	text-decoration: none;
+}
+
 a.breadcrumb {
 	color: rgba(0, 0, 0, .87);
 	font-weight: bold;

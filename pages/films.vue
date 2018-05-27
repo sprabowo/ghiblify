@@ -37,13 +37,13 @@
                 ></v-card-media> -->
                 <img :src="item.image" width="100%" />
                 <v-card-title class="custom__primary__title" primary-title>
-                  <v-flex md11>
+                  <v-flex xs11>
                     <div class="headline mb-0">{{ item.title }}</div>
                     <div>
                       ({{ item.release_date }})
                     </div>
                   </v-flex>
-                  <v-flex md1>
+                  <v-flex m-0 xs1>
                     <v-icon @click="removeBookmark(item)" v-if="item.bookmarked">bookmark</v-icon>
                     <v-icon @click="addBookmark(item)" v-else>bookmark_border</v-icon>
                   </v-flex>
@@ -61,10 +61,16 @@
                     ></v-card-media> -->
                   </v-flex>
                   <v-flex xs8>
-                    <div>
-                      <div class="headline warna__title">{{ item.title }}</div>
-                      <div class="warna__description">{{ item.release_date}}</div>
-                    </div>
+                    <v-layout row>
+                      <v-flex xs10>
+                        <div class="headline warna__title">{{ item.title }}</div>
+                        <div class="warna__description">{{ item.release_date}}</div>
+                      </v-flex>
+                      <v-flex xs2>
+                        <v-icon @click="removeBookmark(item)" v-if="item.bookmarked">bookmark</v-icon>
+                        <v-icon @click="addBookmark(item)" v-else>bookmark_border</v-icon>
+                      </v-flex>
+                    </v-layout>
                   </v-flex>
                 </v-layout>
               </v-container>
