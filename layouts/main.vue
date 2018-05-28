@@ -9,7 +9,7 @@
 		>
 			<v-layout row wrap>
 				<div class="hidden-md-and-up input-group input-group--prepend-icon input-group--solo input-group--solo-inverted elevation-0 input-group--text-field input-group--single-line primary--text">
-					<v-autocomplete :input-attrs="{ class: 'on__popup on__border__bawah', placeholder: 'I want to search...', tabindex: '0', 'aria-label': 'Search' }" :min-len="0" :auto-select-one-item="false" :keep-open="true" :items="items" v-model="item" :get-label="getLabel2" :component-item='template' @update-items="updateItems">
+					<v-autocomplete :input-attrs="{ class: 'on__popup on__border__bawah', placeholder: 'I want to search...', tabindex: '0', 'aria-label': 'Search' }" :min-len="0" :auto-select-one-item="false" :items="items" v-model="item" :get-label="getLabel2" :component-item='template' @update-items="updateItems">
 					</v-autocomplete>
 					<!-- <div class="input-group__input"> -->
 						<!-- <input tabindex="0" aria-label="Search" type="text"> -->

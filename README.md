@@ -6,17 +6,20 @@
 
 ``` bash
 # install dependencies
-$ yarn install
+$ yarn # or npm install
 
 # serve with hot reload at localhost:3000
-$ yarn run dev
+$ yarn run dev # or npm run dev
 
 # build for production and launch server
-$ yarn run build
-$ yarn start
-
-# generate static project
-$ yarn run generate
+$ yarn run build # or npm run build
+$ yarn start # or npm run start
 ```
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+## Powered by
+- NuxtJS
+- Vuetify
+- Vuex
+
+## Demo
+[https://s.id/ghiblify](https://s.id/ghiblify)
