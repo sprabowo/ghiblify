@@ -105,7 +105,7 @@
 			<v-btn nuxt to="/bookmark" flat>Bookmark</v-btn>
 		</v-toolbar-items>
 		<v-spacer class="hidden-sm-and-down"></v-spacer>
-		<v-spacer></v-spacer>
+		<v-spacer class="hidden-md-and-up"></v-spacer>
 		<v-icon class="hidden-md-and-up" @click.stop="dialog = true">
 			search
 		</v-icon>
