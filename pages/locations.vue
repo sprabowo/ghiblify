@@ -86,9 +86,10 @@ export default {
         if (bottomOfWindow) {
           this.loading = true
           let hasil = this.$store.state.locations
-          for (var h in hasil) {
-            locations.push(hasil[h])
-          }
+          // for (var h in hasil) {
+          //   locations.push(hasil[h])
+          // }
+          this.locations = this.locations.concat(hasil)
           this.loading = false
         }
       };
@@ -120,7 +121,7 @@ export default {
       md4: false,
       md12: true,
       loadmore: false,
-      loading: true
+      loading: false
     }
   },
   components: {

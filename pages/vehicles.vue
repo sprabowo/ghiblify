@@ -122,9 +122,10 @@ export default {
         if (bottomOfWindow) {
           this.loading = true
           let hasil = this.$store.state.vehicles
-          for (var h in hasil) {
-            vehicles.push(hasil[h])
-          }
+          // for (var h in hasil) {
+          //   vehicles.push(hasil[h])
+          // }
+          this.vehicles = this.vehicles.concat(hasil)
           this.loading = false
         }
       };

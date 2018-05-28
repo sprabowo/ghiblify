@@ -150,9 +150,10 @@ export default {
         if (bottomOfWindow) {
           this.loading = true
           let hasil = this.$store.state.people
-          for (var h in hasil) {
-            people.push(hasil[h])
-          }
+          // for (var h in hasil) {
+          //   people.push(hasil[h])
+          // }
+          this.people = this.people.concat(hasil)
           this.loading = false
         }
       };
@@ -206,7 +207,7 @@ export default {
       md4: true,
       md12: false,
       loadmore: false,
-      loading: true
+      loading: false
     }
   },
   components: {

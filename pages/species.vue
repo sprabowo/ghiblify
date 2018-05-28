@@ -87,9 +87,10 @@ export default {
         if (bottomOfWindow) {
           this.loading = true
           let hasil = this.$store.state.species
-          for (var h in hasil) {
-            species.push(hasil[h])
-          }
+          // for (var h in hasil) {
+          //   species.push(hasil[h])
+          // }
+          this.species = this.species.concat(hasil)
           this.loading = false
         }
       };
@@ -121,7 +122,7 @@ export default {
       md4: false,
       md12: true,
       loadmore: false,
-      loading: true
+      loading: false
     }
   },
   components: {

@@ -144,9 +144,11 @@ export default {
         if (bottomOfWindow) {
           this.loading = true
           let hasil = this.$store.state.films
-          for (var h in hasil) {
-            films.push(hasil[h])
-          }
+          // console.log(hasil)
+          // for (var h in hasil) {
+          //   films.push(hasil[h])
+          // }
+          this.films = this.films.concat(hasil)
           this.loading = false
         }
       };
@@ -188,7 +190,7 @@ export default {
       md4: true,
       md12: false,
       loadmore: false,
-      loading: true
+      loading: false
     }
   },
   components: {
