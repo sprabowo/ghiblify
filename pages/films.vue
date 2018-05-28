@@ -86,11 +86,11 @@
               </v-container>
             </v-card>
           </v-flex>
-        </v-layout>
-        <v-layout v-if="loading" mb-2 row>
-          <v-flex xs12 text-xs-center>
-            <img src="~/assets/img/loader.gif" width="50px" height="50px"/>
-          </v-flex>
+          <v-layout v-if="loading" mb-2 row>
+            <v-flex xs12 text-xs-center>
+              <img src="~/assets/img/loader.gif" width="50px" height="50px"/>
+            </v-flex>
+          </v-layout>
         </v-layout>
       </v-flex>
     </v-layout>
@@ -188,7 +188,7 @@ export default {
       md4: true,
       md12: false,
       loadmore: false,
-      loading: false
+      loading: true
     }
   },
   components: {

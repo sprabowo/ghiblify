@@ -76,6 +76,36 @@
       <v-list>
         <v-list-tile text-xs-center>
 					<v-list-tile-action>
+					<nuxt-link to="/vehicles"><v-icon>directions_boat</v-icon></nuxt-link>
+					</v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title><nuxt-link to="/vehicles">Vehicles</nuxt-link></v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+      <v-list>
+        <v-list-tile text-xs-center>
+					<v-list-tile-action>
+					<nuxt-link to="/locations"><v-icon>map</v-icon></nuxt-link>
+					</v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title><nuxt-link to="/locations">Locations</nuxt-link></v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+      <v-list>
+        <v-list-tile text-xs-center>
+					<v-list-tile-action>
+					<nuxt-link to="/species"><v-icon>pets</v-icon></nuxt-link>
+					</v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title><nuxt-link to="/species">Species</nuxt-link></v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+      <v-list>
+        <v-list-tile text-xs-center>
+					<v-list-tile-action>
 					<nuxt-link to="/bookmark"><v-icon>bookmark</v-icon></nuxt-link>
 					</v-list-tile-action>
           <v-list-tile-content>
