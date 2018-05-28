@@ -1,5 +1,32 @@
 <template>
 	<v-app>
+		<v-dialog
+			v-model="dialog"
+			fullscreen
+			hide-overlay
+			transition="fade-transition"
+			scrollable
+		>
+			<v-layout row wrap>
+				<div class="hidden-md-and-up input-group input-group--prepend-icon input-group--solo input-group--solo-inverted elevation-0 input-group--text-field input-group--single-line primary--text">
+					<v-autocomplete :input-attrs="{ class: 'on__popup', placeholder: 'I want to search...', tabindex: '0', 'aria-label': 'Search' }" :min-len="0" :auto-select-one-item="false" :items="items" v-model="item" :get-label="getLabel2" :component-item='template' @update-items="updateItems">
+					</v-autocomplete>
+					<!-- <div class="input-group__input"> -->
+						<!-- <input tabindex="0" aria-label="Search" type="text"> -->
+					<!-- <i aria-hidden="true" class="inside__input__2 icon material-icons input-group__prepend-icon">search</i> -->
+					<v-icon class="hidden-md-and-up inside__input__2" color="grey lighten-2">
+						search
+					</v-icon>
+					<v-icon class="hidden-md-and-up inside__input__3" @click.stop="dialog = false">
+						keyboard_arrow_left
+					</v-icon>
+					<!-- <i aria-hidden="true" v-on:click="dialog = true" class="inside__input__3 icon material-icons input-group__prepend-icon">keyboard_arrow_left</i> -->
+					<!-- </div> -->
+					<div class="input-group__details">
+					</div>
+				</div>
+			</v-layout>
+		</v-dialog>
 		<v-navigation-drawer
 		 	class="hidden-md-and-up"
       temporary
@@ -78,6 +105,10 @@
 			<v-btn nuxt to="/bookmark" flat>Bookmark</v-btn>
 		</v-toolbar-items>
 		<v-spacer class="hidden-sm-and-down"></v-spacer>
+		<v-spacer></v-spacer>
+		<v-icon class="hidden-md-and-up" @click.stop="dialog = true">
+			search
+		</v-icon>
 		<!-- <v-text-field
 			flat
 			solo-inverted
@@ -108,6 +139,13 @@ export default {
       }
       return ''
     },
+		getLabel2(item) {
+      if (item) {
+				this.$router.replace('/' + item.category + '/' + item.id)
+				this.dialog = false
+      }
+      return ''
+    },
     updateItems(t) {
       this.items = []
 			let dataItem = dataSearch
@@ -124,6 +162,7 @@ export default {
 	},
 	data() {
 		return {
+			dialog: false,
 			drawer: false,
 			items: [],
 			item: null,

@@ -3,6 +3,9 @@
 		width: 1016px;
 		margin: 0 auto;
 	}
+	.cursor__dong {
+		cursor: pointer;
+	} 
 }
 
 a.logo__header {
@@ -45,10 +48,6 @@ a.breadcrumb {
 	vertical-align: middle;
 }
 
-.cursor__dong {
-	cursor: pointer;
-} 
-
 .image__people__thumbnail__2 {
 	height: 150px;
     display: block;
@@ -84,9 +83,26 @@ a.breadcrumb {
 .warna__description {
 	color: #7d7d7d;
 }
+
 .inside__input {
 	position: absolute;
 	left: 12px;
+}
+
+.inside__input__2 {
+	position: absolute;
+	left: 36px;
+	top: 10px;
+}
+
+i.inside__input__2 {
+	color: #EFEFEF;
+}
+
+.inside__input__3 {
+	position: absolute;
+	left: 8px;
+	top: 10px;
 }
 
 .v-autocomplete {
@@ -99,6 +115,17 @@ a.breadcrumb {
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
 	padding: 1rem 3rem;
+}
+
+input.on__popup {
+	width: 100%;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+	padding: 1rem 5rem;
+}
+
+input.on__popup::placeholder {
+	color: #EEEEEE;
 }
 
 .v-autocomplete .v-autocomplete-list {
