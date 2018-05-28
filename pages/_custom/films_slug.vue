@@ -17,8 +17,8 @@
                     <h1 class="warna__title">{{ item.title }}</h1>
                   </v-flex>
                   <v-flex mt-2 text-xs-center xs2>
-                    <v-icon @click="removeBookmark(item)" v-if="item.bookmarked">bookmark</v-icon>
-                    <v-icon @click="addBookmark(item)" v-else>bookmark_border</v-icon>
+                    <v-icon class="cursor__dong" medium @click="removeBookmark(item)" v-if="item.bookmarked">bookmark</v-icon>
+                    <v-icon class="cursor__dong" medium @click="addBookmark(item)" v-else>bookmark_border</v-icon>
                   </v-flex>
                 </v-layout>
                 <div class="warna__description">Release Date: {{ item.release_date }}</div>

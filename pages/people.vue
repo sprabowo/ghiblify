@@ -83,6 +83,11 @@
             </v-card>
           </v-flex>
         </v-layout>
+        <v-layout v-if="loading" mb-2 row>
+          <v-flex xs12 text-xs-center>
+            <img src="~/assets/img/loader.gif" width="50px" height="50px"/>
+          </v-flex>
+        </v-layout>
       </v-flex>
     </v-layout>
   </div>
@@ -133,23 +138,22 @@ export default {
 		}
 	},
   mounted() {
-    window.addEventListener('scroll', () => {
-      this.loadmore = this.bottomLoadMore()
-    })
+    this.scrollMore(this.people)
   },
   methods: {
-    bottomLoadMore() {
-      const scrollY = window.scrollY
-      const visible = document.documentElement.clientHeight
-      const pageHeight = document.documentElement.scrollHeight
-      const bottomOfPage = visible + scrollY >= pageHeight
-      return bottomOfPage || pageHeight < visible
-    },
-    addMore() {
-      let hasil = this.$store.state.people
-      for (var h in hasil) {
-        this.people.push(hasil[h])
-      }
+    scrollMore(people) {
+      window.onscroll = () => {
+        let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+
+        if (bottomOfWindow) {
+          this.loading = true
+          let hasil = this.$store.state.people
+          for (var h in hasil) {
+            people.push(hasil[h])
+          }
+          this.loading = false
+        }
+      };
     },
     onChangeFilter() {
       let sortingan
@@ -199,7 +203,8 @@ export default {
       xs12: false,
       md4: true,
       md12: false,
-      loadmore: false
+      loadmore: false,
+      loading: false
     }
   },
   components: {

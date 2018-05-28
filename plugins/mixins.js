@@ -11,7 +11,6 @@ Vue.mixin({
     removeBookmark(value) {
       this.$store.dispatch('removeBookmark', value.id)
       this.$store.dispatch('removeListBookmark', value.id)
-      console.log(this.$store.state.bookmark)
       event.preventDefault()
     },
     descrify(desc = null, total = 160) {

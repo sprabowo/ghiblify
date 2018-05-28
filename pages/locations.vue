@@ -42,6 +42,11 @@
             </v-card>
           </v-flex>
         </v-layout>
+        <v-layout v-if="loading" mb-2 row>
+          <v-flex xs12 text-xs-center>
+            <img src="~/assets/img/loader.gif" width="50px" height="50px"/>
+          </v-flex>
+        </v-layout>
       </v-flex>
     </v-layout>
   </div>
@@ -70,47 +75,23 @@ export default {
 			]
 		}
 	},
-  watch: {
-    loadmore(loadmore) {
-      if (loadmore) {
-        this.addMore()
-      }
-    }
-  },
   mounted() {
-    window.addEventListener('scroll', () => {
-      this.loadmore = this.bottomLoadMore()
-    })
+    this.scrollMore(this.locations)
   },
   methods: {
-    bottomLoadMore() {
-      const scrollY = window.scrollY
-      const visible = document.documentElement.clientHeight
-      const pageHeight = document.documentElement.scrollHeight
-      const bottomOfPage = visible + scrollY >= pageHeight
-      return bottomOfPage || pageHeight < visible
-    },
-    addMore() {
-      // this.nowLoading = true
-      // let pageIn = parseInt(this.page)
-      // let limitIn = this.limit
-      // let hasil = await keyword(9908, pageIn, limitIn)
-      let hasil = this.$store.state.locations
-      for (var h in hasil) {
-        this.locations.push(hasil[h])
-      }
-      // console.log(pageIn)
-      // console.log(hasil)
-      // this.page = pageIn
-      // if (hasil.result.length > 0) {
-      //   for (var i = 0; i < hasil.result.length; i++) {
-      //     this.listarticle.push(hasil.result[i])
-      //   }
-      //   this.nowLoading = false
-      // } else {
-      //   this.nowLoading = false
-      //   this.nowFinish = true
-      // }
+    scrollMore(locations) {
+      window.onscroll = () => {
+        let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+
+        if (bottomOfWindow) {
+          this.loading = true
+          let hasil = this.$store.state.locations
+          for (var h in hasil) {
+            locations.push(hasil[h])
+          }
+          this.loading = false
+        }
+      };
     },
     onChange() {
       let sortingan
@@ -138,7 +119,8 @@ export default {
       xs12: true,
       md4: false,
       md12: true,
-      loadmore: false
+      loadmore: false,
+      loading: false
     }
   },
   components: {

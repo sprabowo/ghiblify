@@ -112,39 +112,22 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener('scroll', () => {
-      this.loadmore = this.bottomLoadMore()
-    })
+    this.scrollMore(this.vehicles)
   },
   methods: {
-    bottomLoadMore() {
-      const scrollY = window.scrollY
-      const visible = document.documentElement.clientHeight
-      const pageHeight = document.documentElement.scrollHeight
-      const bottomOfPage = visible + scrollY >= pageHeight
-      return bottomOfPage || pageHeight < visible
-    },
-    addMore() {
-      // this.nowLoading = true
-      // let pageIn = parseInt(this.page)
-      // let limitIn = this.limit
-      // let hasil = await keyword(9908, pageIn, limitIn)
-      let hasil = this.$store.state.vehicles
-      for (var h in hasil) {
-        this.vehicles.push(hasil[h])
-      }
-      // console.log(pageIn)
-      // console.log(hasil)
-      // this.page = pageIn
-      // if (hasil.result.length > 0) {
-      //   for (var i = 0; i < hasil.result.length; i++) {
-      //     this.listarticle.push(hasil.result[i])
-      //   }
-      //   this.nowLoading = false
-      // } else {
-      //   this.nowLoading = false
-      //   this.nowFinish = true
-      // }
+    scrollMore(vehicles) {
+      window.onscroll = () => {
+        let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+
+        if (bottomOfWindow) {
+          this.loading = true
+          let hasil = this.$store.state.vehicles
+          for (var h in hasil) {
+            vehicles.push(hasil[h])
+          }
+          this.loading = false
+        }
+      };
     },
     onChange() {
       let sortingan
@@ -172,7 +155,8 @@ export default {
       xs12: false,
       md4: true,
       md12: false,
-      loadmore: false
+      loadmore: false,
+      loading: false
     }
   },
   components: {

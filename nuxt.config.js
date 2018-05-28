@@ -84,6 +84,7 @@ module.exports = {
   plugins: [
     '@/plugins/vuetify',
     '~/plugins/mixins.js',
+    '~/plugins/autocomplete.js',
     { src: '~/plugins/nuxt-client-init.js', ssr: false },
     { src: '~/plugins/local-storage.js', ssr: false }
   ],

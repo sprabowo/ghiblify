@@ -48,8 +48,8 @@
                     </nuxt-link>
                   </v-flex>
                   <v-flex px-1 xs2>
-                    <v-icon medium @click="removeBookmark(item)" v-if="item.bookmarked">bookmark</v-icon>
-                    <v-icon medium @click="addBookmark(item)" v-else>bookmark_border</v-icon>
+                    <v-icon class="cursor__dong" medium @click="removeBookmark(item)" v-if="item.bookmarked">bookmark</v-icon>
+                    <v-icon class="cursor__dong" medium @click="addBookmark(item)" v-else>bookmark_border</v-icon>
                   </v-flex>
                 </v-card-title>
               </v-flex>
@@ -77,14 +77,19 @@
                         </nuxt-link>
                       </v-flex>
                       <v-flex px-1 xs2>
-                        <v-icon medium @click="removeBookmark(item)" v-if="item.bookmarked">bookmark</v-icon>
-                        <v-icon medium @click="addBookmark(item)" v-else>bookmark_border</v-icon>
+                        <v-icon class="cursor__dong" medium @click="removeBookmark(item)" v-if="item.bookmarked">bookmark</v-icon>
+                        <v-icon class="cursor__dong" medium @click="addBookmark(item)" v-else>bookmark_border</v-icon>
                       </v-flex>
                     </v-layout>
                   </v-flex>
                 </v-layout>
               </v-container>
             </v-card>
+          </v-flex>
+        </v-layout>
+        <v-layout v-if="loading" mb-2 row>
+          <v-flex xs12 text-xs-center>
+            <img src="~/assets/img/loader.gif" width="50px" height="50px"/>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -126,19 +131,26 @@ export default {
         this.md4 = !this.md4
         this.md12 = !this.md12
       }
-    },
-    loadmore(loadmore) {
-      if (loadmore) {
-        this.addMore()
-      }
     }
   },
   mounted() {
-    window.addEventListener('scroll', () => {
-      this.loadmore = this.bottomLoadMore()
-    })
+    this.scrollMore(this.films)
   },
   methods: {
+    scrollMore(films) {
+      window.onscroll = () => {
+        let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+
+        if (bottomOfWindow) {
+          this.loading = true
+          let hasil = this.$store.state.films
+          for (var h in hasil) {
+            films.push(hasil[h])
+          }
+          this.loading = false
+        }
+      };
+    },
     addBookmark(value) {
       this.$store.dispatch('addBookmark', value.id)
       this.$store.dispatch('addListBookmark', value)
@@ -148,35 +160,6 @@ export default {
       this.$store.dispatch('removeBookmark', value.id)
       this.$store.dispatch('removeListBookmark', value.id)
       event.preventDefault()
-    },
-    bottomLoadMore() {
-      const scrollY = window.scrollY
-      const visible = document.documentElement.clientHeight
-      const pageHeight = document.documentElement.scrollHeight
-      const bottomOfPage = visible + scrollY >= pageHeight
-      return bottomOfPage || pageHeight < visible
-    },
-    addMore() {
-      // this.nowLoading = true
-      // let pageIn = parseInt(this.page)
-      // let limitIn = this.limit
-      // let hasil = await keyword(9908, pageIn, limitIn)
-      let hasil = this.$store.state.films
-      for (var h in hasil) {
-        this.films.push(hasil[h])
-      }
-      // console.log(pageIn)
-      // console.log(hasil)
-      // this.page = pageIn
-      // if (hasil.result.length > 0) {
-      //   for (var i = 0; i < hasil.result.length; i++) {
-      //     this.listarticle.push(hasil.result[i])
-      //   }
-      //   this.nowLoading = false
-      // } else {
-      //   this.nowLoading = false
-      //   this.nowFinish = true
-      // }
     },
     onChange() {
       let sortingan
@@ -204,7 +187,8 @@ export default {
       xs12: false,
       md4: true,
       md12: false,
-      loadmore: false
+      loadmore: false,
+      loading: false
     }
   },
   components: {

@@ -61,7 +61,16 @@
 		<v-toolbar-side-icon class="hidden-md-and-up" @click.native.stop="drawer = !drawer" />
 		<v-spacer></v-spacer>
 		<v-toolbar-title><a href="/"><img src="~/assets/img/ghibli.gif" height="45px"/></a></v-toolbar-title>
-		<v-spacer class="hidden-sm-and-down"></v-spacer>
+		<div class="mr-3 hidden-sm-and-down input-group input-group--prepend-icon input-group--solo input-group--solo-inverted elevation-0 input-group--text-field input-group--single-line primary--text">
+			<v-autocomplete :input-attrs="{ placeholder: 'I want to search...', tabindex: '0', 'aria-label': 'Search' }" :min-len="0" :auto-select-one-item="false" :items="items" v-model="item" :get-label="getLabel" :component-item='template' @update-items="updateItems">
+			</v-autocomplete>
+			<!-- <div class="input-group__input"> -->
+				<!-- <input tabindex="0" aria-label="Search" type="text"> -->
+			<i aria-hidden="true" class="inside__input icon material-icons input-group__prepend-icon">search</i>
+			<!-- </div> -->
+			<div class="input-group__details">
+			</div>
+		</div>
 		<v-toolbar-items class="hidden-sm-and-down">
 			<v-btn exact nuxt to="/" flat>Home</v-btn>
 			<v-btn nuxt to="/films" flat>Films</v-btn>
@@ -88,11 +97,37 @@
 
 <script>
 import MyHeader from '~/components/Header'
+import ItemTemplate from '~/components/ItemTemplate'
+import dataSearch from '@/data/search.js'
 
 export default {
+	methods: {
+		getLabel(item) {
+      if (item) {
+				this.$router.replace('/' + item.category + '/' + item.id)
+      }
+      return ''
+    },
+    updateItems(t) {
+      this.items = []
+			let dataItem = dataSearch
+      if (dataItem !== null) {
+        this.items = dataItem.filter((o) => {
+          return (new RegExp(t.toLowerCase())).test(o['title'].toLowerCase())
+        }).splice(0, 3)
+      }
+    }
+	},
+	watch: {
+		$route (to, from) {
+		}
+	},
 	data() {
 		return {
-			drawer: false
+			drawer: false,
+			items: [],
+			item: null,
+			template: ItemTemplate
 		}
 	},
 	components: {
