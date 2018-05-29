@@ -1,5 +1,4 @@
 # ghiblify
-
 > all about studio ghibli
 
 ## Build Setup
@@ -15,6 +14,10 @@ $ yarn run dev # or npm run dev
 $ yarn run build # or npm run build
 $ yarn start # or npm run start
 ```
+## Features
+- Search
+- Grid/List mode
+- Bookmark (for Films)
 
 ## Powered by
 - NuxtJS
@@ -22,4 +25,4 @@ $ yarn start # or npm run start
 - Vuex
 
 ## Demo
-[https://s.id/ghiblify](https://s.id/ghiblify)
+[https://ghiblify.now.sh](https://ghiblify.now.sh)
