@@ -22,4 +22,4 @@ $ yarn start # or npm run start
 - Vuex
 
 ## Demo
-[https://s.id/ghiblify](https://s.id/ghiblify)
+[https://ghiblify.now.sh](https://ghiblify.now.sh)
