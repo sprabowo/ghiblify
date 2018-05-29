@@ -130,7 +130,7 @@ export default {
       vehicles: store.state.vehicles,
       locations: store.state.locations
     }
-    console.log(result)
+    // console.log(result)
     return result
   },
   head() {

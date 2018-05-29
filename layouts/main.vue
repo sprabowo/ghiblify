@@ -9,7 +9,7 @@
 		>
 			<v-layout row wrap>
 				<div class="hidden-md-and-up input-group input-group--prepend-icon input-group--solo input-group--solo-inverted elevation-0 input-group--text-field input-group--single-line primary--text">
-					<v-autocomplete :input-attrs="{ class: 'on__popup on__border__bawah', placeholder: 'I want to search...', tabindex: '0', 'aria-label': 'Search' }" :min-len="0" :auto-select-one-item="false" :items="items" v-model="item" :get-label="getLabel2" :component-item='template' @update-items="updateItems">
+					<v-autocomplete :input-attrs="{ class: 'on__popup on__border__bawah', placeholder: 'I want to search...', tabindex: '0', 'aria-label': 'Search' }" :min-len="0" :auto-select-one-item="false" @change="searchChange" :items="items" v-model="item" :get-label="getLabel2" :component-item='template' @update-items="updateItems">
 					</v-autocomplete>
 					<!-- <div class="input-group__input"> -->
 						<!-- <input tabindex="0" aria-label="Search" type="text"> -->
@@ -20,7 +20,7 @@
 					<v-icon class="hidden-md-and-up inside__input__3" @click.stop="dialog = false">
 						keyboard_arrow_left
 					</v-icon>
-					<v-icon class="hidden-md-and-up inside__input__4" @click.stop="item = ''">
+					<v-icon v-if="reset" class="hidden-md-and-up inside__input__4" @click.stop="nullin">
 						close
 					</v-icon>
 					<!-- <i aria-hidden="true" v-on:click="dialog = true" class="inside__input__3 icon material-icons input-group__prepend-icon">keyboard_arrow_left</i> -->
@@ -122,7 +122,7 @@
 		<v-spacer></v-spacer>
 		<v-toolbar-title><a href="/"><img src="~/assets/img/ghibli.gif" height="45px"/></a></v-toolbar-title>
 		<div class="mr-3 hidden-sm-and-down input-group input-group--prepend-icon input-group--solo input-group--solo-inverted elevation-0 input-group--text-field input-group--single-line primary--text">
-			<v-autocomplete :input-attrs="{ placeholder: 'I want to search...', tabindex: '0', 'aria-label': 'Search' }" :min-len="0" :auto-select-one-item="false" :items="items" v-model="item" :get-label="getLabel" :component-item='template' @update-items="updateItems">
+			<v-autocomplete :input-attrs="{ id: 'mob', placeholder: 'I want to search...', tabindex: '0', 'aria-label': 'Search' }" :min-len="0" :auto-select-one-item="false" :items="items" v-model="item" :get-label="getLabel" :component-item='template' @update-items="updateItems">
 			</v-autocomplete>
 			<!-- <div class="input-group__input"> -->
 				<!-- <input tabindex="0" aria-label="Search" type="text"> -->
@@ -179,19 +179,30 @@ export default {
       }
       return ''
     },
+		nullin() {
+			this.item = ''
+			this.reset = false
+			this.items = []
+			setTimeout(() => this.item = null, 100)
+		},
+		searchChange(t) {
+			if (t) {
+				this.reset = true
+			} else {
+				this.reset = false
+			}
+		},
     updateItems(t) {
       this.items = []
 			let dataItem = dataSearch
       if (dataItem !== null) {
-        this.items = dataItem.filter((o) => {
-          return (new RegExp(t.toLowerCase())).test(o['title'].toLowerCase())
-        }).splice(0, 3)
+				if (t) {
+					this.items = dataItem.filter((o) => {
+						return (new RegExp(t.toLowerCase())).test(o['title'].toLowerCase())
+					}).splice(0, 3)
+				}
       }
     }
-	},
-	watch: {
-		$route (to, from) {
-		}
 	},
 	data() {
 		return {
@@ -199,6 +210,7 @@ export default {
 			drawer: false,
 			items: [],
 			item: null,
+			reset: false,
 			template: ItemTemplate
 		}
 	},
