@@ -47,14 +47,14 @@
             <v-card nuxt v-else :to="'vehicles/' + item.id" color="white" class="black--text">
               <v-container fluid grid-list-lg>
                 <v-layout row>
-                  <v-flex xs4>
-                    <img class="image__people__thumbnail"  :src="item.image" width="100%" />
+                  <v-flex xs6>
+                    <img class="image__people__thumbnail__2"  :src="item.image" width="100%" />
                     <!-- <v-card-media
                       :src="item.image"
                       height="125px"
                     ></v-card-media> -->
                   </v-flex>
-                  <v-flex xs8>
+                  <v-flex xs6>
                     <div>
                       <div class="headline warna__title">{{ item.name }}</div>
                       <div class="warna__description">{{ item.vehicle_class }}</div>
