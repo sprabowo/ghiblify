@@ -1,6 +1,10 @@
 import Vuex from 'vuex'
 import { latestfilms, latestpeople, latestspecies, latestvehicles, latestlocations } from '~/plugins/datasource'
 
+const NodeCache = require('node-cache')
+const myCache = new NodeCache({ stdTTL: 18000, checkperiod: 120 })
+const keyCache = 'ghiblify::wp::'
+
 const createStore = () => {
 	return new Vuex.Store({
 		state: {
@@ -61,13 +65,44 @@ const createStore = () => {
 				commit('UNBOOKMARK_FILMS', value)
 			},
 			async nuxtClientInit({ commit }, { query, store }) {
-				let [dataFilms, dataPeople, dataLocations, dataSpecies, dataVehicles] = await Promise.all([
-					latestfilms(),
-					latestpeople(),
-					latestlocations(),
-					latestspecies(),
-					latestvehicles()
-				])
+				let dataFilms 
+				let dataPeople 
+				let dataLocations 
+				let dataSpecies 
+				let dataVehicles
+
+				dataFilms = myCache.get(keyCache + 'dataFilms')
+				dataPeople = myCache.get(keyCache + 'dataPeople')
+				dataLocations = myCache.get(keyCache + 'dataLocations')
+				dataSpecies = myCache.get(keyCache + 'dataSpecies')
+				dataVehicles = myCache.get(keyCache + 'dataVehicles')
+
+				if ((process.server || process.client) && !query.cache && 
+					dataFilms !== undefined &&
+					dataPeople !== undefined &&
+					dataLocations !== undefined &&
+					dataSpecies !== undefined &&
+					dataVehicles !== undefined
+				) {
+					
+				} else {
+					[dataFilms, dataPeople, dataLocations, dataSpecies, dataVehicles] = await Promise.all([
+						latestfilms(),
+						latestpeople(),
+						latestlocations(),
+						latestspecies(),
+						latestvehicles()
+					])
+					if (
+					myCache.set(keyCache + 'dataFilms', dataFilms) &&
+					myCache.set(keyCache + 'dataLocations', dataLocations) &&
+					myCache.set(keyCache + 'dataPeople', dataPeople) &&
+					myCache.set(keyCache + 'dataSpecies', dataSpecies) &&
+					myCache.set(keyCache + 'dataVehicles', dataVehicles)
+					) {
+					//   console.log('melawan arus')
+					}
+				}
 				commit('UPDATE_FILMS', dataFilms)
 				commit('UPDATE_LOCATIONS', dataLocations)
 				commit('UPDATE_PEOPLE', dataPeople)
