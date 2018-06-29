@@ -2,7 +2,7 @@ import Vuex from 'vuex'
 import { latestfilms, latestpeople, latestspecies, latestvehicles, latestlocations } from '~/plugins/datasource'
 
 const NodeCache = require('node-cache')
-const myCache = new NodeCache({ stdTTL: 18000, checkperiod: 120 })
+const myCache = new NodeCache({ stdTTL: 0, checkperiod: 0 })
 const keyCache = 'ghiblify::wp::'
 
 const createStore = () => {
