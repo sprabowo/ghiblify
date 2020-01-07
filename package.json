@@ -15,7 +15,7 @@
   "dependencies": {
     "@nuxtjs/pwa": "^2.0.8",
     "axios": "^0.18.0",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.13",
     "node-cache": "^4.2.0",
     "nuxt": "^1.0.0",
     "v-autocomplete": "^1.8.2",
